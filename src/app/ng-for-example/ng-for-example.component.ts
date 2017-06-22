@@ -4,8 +4,8 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-ng-for-example',
   template: `
   <ul>
-      <li *ngFor="let animal of animals, let i = index">
-          {{ i }} - {{ animal.name }}
+      <li *ngFor="let animal of animals, let i = index, let x = odd, trackBy:trackByAnimalId">
+          {{ i + 1 }} - {{ !x }} - {{ animal.name }}
       </li>
   </ul>
   `,
@@ -35,6 +35,10 @@ export class NgForExampleComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  trackByAnimalId(index: number, animal: any) {
+    return animal.id;
   }
 
 }
